@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  scala-sql-service:
+    image: scala-sql-service:latest
+    command: ["10000000", "1000"] # the number of rows to insert and the number of rows in one batch
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./mysql-init:/mysql-init
+
+  db:
+    image: mysql:latest
+    command: --default-storage-engine=innodb # --skip-innodb-adaptive-hash-index
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mydb
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    depends_on:
+      - scala-sql-service
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
