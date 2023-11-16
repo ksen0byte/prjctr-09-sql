@@ -10,7 +10,7 @@ services:
 
   db:
     image: mysql:latest
-    command: --default-storage-engine=innodb # --skip-innodb-adaptive-hash-index
+    command: --default-storage-engine=innodb # --skip-innodb-adaptive-hash-index --innodb-flush-log-at-trx-commit=0
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: mydb

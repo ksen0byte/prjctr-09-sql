@@ -69,3 +69,12 @@ Screenshot of results: ![With HASH Index](./screenshots/select_hash_index_10M.pn
 Compare the results of the selections under different indexing strategies:
 
 Screenshot of comparison: ![result_index_comparison](./screenshots/result_index_comparison.png)
+
+
+### Insert Performance Testing
+Insert performance was tested under different settings for `--innodb-flush-log-at-trx-commit`:
+
+- With `--innodb-flush-log-at-trx-commit=1`, inserting 10 million entries takes about `5 minutes`.
+- With `--innodb-flush-log-at-trx-commit=0`, the same operation takes about `3 minutes`.
+
+- These findings highlight the impact of transaction log flushing behavior on insert performance in InnoDB.
