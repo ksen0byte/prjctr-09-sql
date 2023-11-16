@@ -2,4 +2,4 @@
 .bsp/
 out/
 *.iml
-/mysql-init
+/mysql-init/02_create_table.sql
